@@ -1,0 +1,181 @@
+<definitions
+	targetNamespace="http://it.fastweb.esb.org/ClusterStatInfo"
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:td="http://it.fastweb.esb.org/TransactionDataTypes"
+	xmlns:rd="http://it.fastweb.esb.org/ResultDataType"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://it.fastweb.esb.org/ClusterStatInfo">
+	<types>
+		<xsd:schema elementFormDefault="qualified"
+			attributeFormDefault="unqualified"
+			targetNamespace="http://it.fastweb.esb.org/ClusterStatInfo">
+			<xsd:import schemaLocation="XSD_ESB_TransactionData.xsd"
+				namespace="http://it.fastweb.esb.org/TransactionDataTypes" />
+			<xsd:import schemaLocation="XSD_ESB_ResultData.xsd"
+				namespace="http://it.fastweb.esb.org/ResultDataType" />
+			<xsd:element name="ClusterStatInfoRequest"
+				type="tns:ClusterStatInfoRequestType" />
+			<xsd:element name="ClusterStatInfoResponse"
+				type="tns:ClusterStatInfoResponseType" />
+
+			<xsd:complexType name="ClusterStatInfoRequestType">
+				<xsd:sequence>
+					<xsd:element name="TransactionData"
+						type="td:TransactionDataType" />
+					<xsd:element name="InputData" type="tns:InputDataType" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="InputDataType">
+				<xsd:sequence>
+					<xsd:element name="requestId">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="36" />
+								<xsd:maxLength value="36" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="account" type="xsd:string" />
+					<xsd:element name="MotivoDiContatto"
+						type="tns:MotivoDiContattoType" minOccurs="0" />
+					<xsd:element name="issue" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="owner" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="area" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="tipologia" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="kvList" type="tns:kvListType"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="kvListType">
+				<xsd:sequence>
+					<xsd:element name="KeyValue" type="tns:KeyValueType"
+						maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="KeyValueType">
+				<xsd:sequence>
+					<xsd:element name="key" type="xsd:string" />
+					<xsd:element name="value" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="MotivoDiContattoType">
+				<xsd:sequence>
+					<xsd:element name="motivo" type="xsd:string" />
+					<xsd:element name="dettaglio" type="xsd:string"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ClusterStatInfoResponseType">
+				<xsd:sequence>
+					<xsd:element name="ResultData" type="rd:ResultDataType" />
+					<xsd:element name="OutputData"
+						type="tns:OutputDataType" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="OutputDataType">
+				<xsd:sequence>
+					<xsd:element name="requestId">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="36" />
+								<xsd:maxLength value="36" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="status" type="xsd:short" />
+					<xsd:element name="description" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="clusterStatInfo"
+						type="tns:clusterStatInfoType" minOccurs="0" />
+					<xsd:element name="stats" type="tns:statsType"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="clusterStatInfoType">
+				<xsd:sequence>
+					<xsd:element name="cluster" type="tns:clusterType"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="clusterType">
+				<xsd:sequence>
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="uscita" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="priorita" type="xsd:int"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="statsType">
+				<xsd:sequence>
+					<xsd:element name="statInfo" type="tns:statInfoType"
+						maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="statInfoType">
+				<xsd:sequence>
+					<xsd:element name="metric" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="object" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="value" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="status" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="lastUpdate" type="xsd:long"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+		</xsd:schema>
+	</types>
+	<message name="ClusterStatInfoRequest">
+		<part name="ClusterStatInfoRequest"
+			element="tns:ClusterStatInfoRequest" />
+	</message>
+	<message name="ClusterStatInfoResponse">
+		<part name="ClusterStatInfoResponse"
+			element="tns:ClusterStatInfoResponse" />
+	</message>
+	<portType name="ClusterStatInfoPortType">
+		<operation name="ClusterStatInfo">
+			<input message="tns:ClusterStatInfoRequest" />
+			<output message="tns:ClusterStatInfoResponse" />
+		</operation>
+	</portType>
+	<binding name="ClusterStatInfoBinding"
+		type="tns:ClusterStatInfoPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="ClusterStatInfo">
+			<soap:operation soapAction="ClusterStatInfo"
+				style="document" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="ClusterStatInfoService">
+		<port name="ClusterStatInfoPort"
+			binding="tns:ClusterStatInfoBinding">
+			<soap:address
+				location="http://localhost:8011/AGW/ClusterStatInfo" />
+		</port>
+	</service>
+</definitions>

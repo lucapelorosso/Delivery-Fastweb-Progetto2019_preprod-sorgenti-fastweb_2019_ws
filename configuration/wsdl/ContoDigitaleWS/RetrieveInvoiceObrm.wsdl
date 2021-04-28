@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions
+
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:n="http://www.fastweb.it/EDH/"
+  xmlns:infa="http://www.informatica.com/"
+  targetNamespace="http://www.informatica.com/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+  <wsdl:types>
+  <xsd:schema targetNamespace="http://www.fastweb.it/EDH/" xmlns="http://www.fastweb.it/EDH/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:infatype="http://www.informatica.com/types/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/http/"/>
+    <xsd:element name="RetrieveInvoiceObrm_Input" type="InputType"/>
+
+    <xsd:element name="RetrieveInvoiceObrm_Output" type="OutputType"/>
+
+    <xsd:complexType name="OutputType">
+      <xsd:sequence>
+        <xsd:element name="ErrorCode">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="10"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="ErrorDescription" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="255"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="AccountNumber">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="60"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="InvoiceNumber">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="60"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="BillYear">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="4"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="ListOfVoices" minOccurs="0" maxOccurs="1" type="OutputRowsType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="OutputRowType">
+      <xsd:sequence>
+        <xsd:element name="BillDate" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="8"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="CostVoice" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="255"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="Category" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="255"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="MobileNbr" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="30"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="AccountClass" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="3"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="StartDate" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:date">
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="EndDate" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:date">
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="FlagProRata" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:decimal">
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="NotaCosto" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="255"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="GLID" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:decimal">
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="COGE" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="30"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="EventNumber" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:decimal">
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="TotalTime" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:decimal">
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="TotalVolume" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:decimal">
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="NetAmount" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:decimal">
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="AmountWithVAT" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:decimal">
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="VATpercentage" minOccurs="0" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="6"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="InputType">
+      <xsd:sequence>
+        <xsd:element name="AccountNumber">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="60"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="InvoiceNumber">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="60"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="BillYear">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:maxLength value="4"/>
+              <xsd:minLength value="0"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="OutputRowsType">
+      <xsd:sequence>
+        <xsd:element name="VoiceItem" minOccurs="0" maxOccurs="unbounded" type="OutputRowType"/>
+      </xsd:sequence>
+    </xsd:complexType>
+
+  </xsd:schema>
+
+  </wsdl:types>
+
+  <wsdl:message name="inMessage">
+    <wsdl:part name="inParm" element="n:RetrieveInvoiceObrm_Input" />
+  </wsdl:message>
+  <wsdl:message name="outMessage">
+    <wsdl:part name="outParm" element="n:RetrieveInvoiceObrm_Output" />
+  </wsdl:message>
+
+  <wsdl:portType name="RetrieveInvoiceObrmPort">
+    <wsdl:operation name="RetrieveInvoiceObrmOperation">
+      <wsdl:input message="infa:inMessage"/>
+      <wsdl:output message="infa:outMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="RetrieveInvoiceObrmBinding" type="infa:RetrieveInvoiceObrmPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="RetrieveInvoiceObrmOperation">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body  use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body  use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="RetrieveInvoiceObrm">
+    <wsdl:port name="RetrieveInvoiceObrmPort" binding="infa:RetrieveInvoiceObrmBinding">
+      <soap:address location="http://pwc-cl3.svi.intranet.fw:7333/wsh/services/RealTime/RetrieveInvoiceObrm" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
+

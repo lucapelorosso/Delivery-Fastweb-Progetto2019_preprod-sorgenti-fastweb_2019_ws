@@ -1,0 +1,49 @@
+<env:Header xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"/>
+<SOAP-ENV:Body xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<ns2:ClusterStatInfoRequest xmlns:ns2="http://it.fastweb.esb.org/ClusterStatInfo">
+		<ns2:TransactionData>
+			<ns1:SenderName xmlns:ns1="http://it.fastweb.esb.org/TransactionDataTypes">MYFP</ns1:SenderName>
+			<ns1:TransactionId xmlns:ns1="http://it.fastweb.esb.org/TransactionDataTypes">ws033_874fee44492984658018b3259a87e585</ns1:TransactionId>
+			<ns1:TransactionTime xmlns:ns1="http://it.fastweb.esb.org/TransactionDataTypes">2019-03-25 11:42:52</ns1:TransactionTime>
+		</ns2:TransactionData>
+		<ns2:InputData>
+			<ns2:requestId>335420ae-f461-48d9-8f1e-2deedd2a029a</ns2:requestId>
+			<ns2:account>8125241</ns2:account>
+			<ns2:MotivoDiContatto>
+				<ns2:motivo>Informazioni</ns2:motivo>
+				<ns2:dettaglio>Conto Fastweb e pagamenti</ns2:dettaglio>
+			</ns2:MotivoDiContatto>
+			<ns2:area>Standard</ns2:area>
+			<ns2:tipologia>Fisso</ns2:tipologia>
+		</ns2:InputData>
+	</ns2:ClusterStatInfoRequest>
+</SOAP-ENV:Body>
+<env:Header xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+<env:Body xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<tns:ClusterStatInfoResponse xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:td="http://it.fastweb.esb.org/TransactionDataTypes" xmlns:rd="http://it.fastweb.esb.org/ResultDataType" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:types="http://hp.com/fastweb/cti/commontypes/" xmlns:tns="http://it.fastweb.esb.org/ClusterStatInfo">
+		<tns:ResultData>
+			<rd:ResultCode>OK</rd:ResultCode>
+		</tns:ResultData>
+		<tns:OutputData>
+			<tns:requestId>335420ae-f461-48d9-8f1e-2deedd2a029a</tns:requestId>
+			<tns:status>0</tns:status>
+			<tns:description>OK</tns:description>
+			<tns:clusterStatInfo>
+				<tns:cluster>
+					<tns:name>39</tns:name>
+					<tns:uscita>25</tns:uscita>
+					<tns:priorita>92</tns:priorita>
+				</tns:cluster>
+			</tns:clusterStatInfo>
+			<tns:stats>
+				<tns:statInfo>
+					<tns:metric>CampEstimatedTimeToComplete</tns:metric>
+					<tns:object>CMB_OUTBOUND_25.Campaign</tns:object>
+					<tns:value>0</tns:value>
+					<tns:status>AVAILABLE</tns:status>
+					<tns:lastUpdate/>
+				</tns:statInfo>
+			</tns:stats>
+		</tns:OutputData>
+	</tns:ClusterStatInfoResponse>
+</env:Body>

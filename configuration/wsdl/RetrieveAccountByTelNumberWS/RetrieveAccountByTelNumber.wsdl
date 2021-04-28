@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions
+
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:n="http://www.fastweb.it/EDH/RetrieveAccountByTelNumber/"
+  xmlns:infa="http://www.informatica.com/"
+  targetNamespace="http://www.informatica.com/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+  <wsdl:types>
+  <xsd:schema targetNamespace="http://www.fastweb.it/EDH/RetrieveAccountByTelNumber/" xmlns="http://www.fastweb.it/EDH/RetrieveAccountByTelNumber/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:infatype="http://www.informatica.com/types/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/http/"/>
+    <xsd:element name="OutputResponse">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="ErrorCode">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="10"/>
+                <xsd:minLength value="0"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="ErrorDescription">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="255"/>
+                <xsd:minLength value="0"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="TelephoneNumber">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="255"/>
+                <xsd:minLength value="0"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+          <xsd:element name="AccountData" minOccurs="0" maxOccurs="unbounded">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="AccountNumber">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:maxLength value="255"/>
+                      <xsd:minLength value="0"/>
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="TipoContatto">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:maxLength value="255"/>
+                      <xsd:minLength value="0"/>
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="UsoContatto">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:maxLength value="255"/>
+                      <xsd:minLength value="0"/>
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="Ownership" nillable="true">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:maxLength value="255"/>
+                      <xsd:minLength value="0"/>
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="CodiceFiscaleORPIVA" nillable="true">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:maxLength value="255"/>
+                      <xsd:minLength value="0"/>
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="AccountStatus" nillable="true">
+                  <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                      <xsd:maxLength value="255"/>
+                      <xsd:minLength value="0"/>
+                    </xsd:restriction>
+                  </xsd:simpleType>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="InputRequest">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="TelephoneNumber">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="255"/>
+                <xsd:minLength value="0"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
+
+  </xsd:schema>
+
+  </wsdl:types>
+
+  <wsdl:message name="inMessage">
+    <wsdl:part name="inParm" element="n:InputRequest" />
+  </wsdl:message>
+  <wsdl:message name="outMessage">
+    <wsdl:part name="outParm" element="n:OutputResponse" />
+  </wsdl:message>
+
+  <wsdl:portType name="RetrieveAccountByTelNumberPort">
+    <wsdl:operation name="RetrieveAccountByTelNumberOperation">
+      <wsdl:input message="infa:inMessage"/>
+      <wsdl:output message="infa:outMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="RetrieveAccountByTelNumberBinding" type="infa:RetrieveAccountByTelNumberPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="RetrieveAccountByTelNumberOperation">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body  use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body  use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="RetrieveAccountByTelNumber">
+    <wsdl:port name="RetrieveAccountByTelNumberPort" binding="infa:RetrieveAccountByTelNumberBinding">
+      <soap:address location="http://pwc-cl3.svi.intranet.fw:7335/wsh/services/RealTime/RetrieveAccountByTelNumber" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
+

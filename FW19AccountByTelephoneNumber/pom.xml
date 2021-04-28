@@ -1,0 +1,168 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>fastweb_2019_account_by_telephone_number</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>FW19AccountByTelephoneNumber</name>
+
+	<build>
+		<finalName>FW19AccountByTelephoneNumber</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<inherited>true</inherited>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.glassfish.jersey</groupId>
+				<artifactId>jersey-bom</artifactId>
+				<version>${jersey.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- DIPENDENZE INTERNE DI PROGETTO -->
+		<dependency>
+			<groupId>fastweb</groupId>
+			<artifactId>ws-fastweb-core</artifactId>
+			<version>${eudata-fastweb-ws.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>fastweb</groupId>
+			<artifactId>ws-fastweb-core-servlet</artifactId>
+			<version>${eudata-fastweb-ws.version}</version>
+		</dependency>
+
+		<!-- JERSEY ADDITIONAL MODULES -->
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet-core</artifactId>
+			<!-- use the following artifactId if you don't need servlet 2.x compatibility -->
+			<!-- artifactId>jersey-container-servlet</artifactId -->
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.inject</groupId>
+			<artifactId>jersey-hk2</artifactId>
+		</dependency>
+		<!-- uncomment this to get JSON support -->
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-binding</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.ext.cdi</groupId>
+			<artifactId>jersey-cdi1x</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.ext.cdi</groupId>
+			<artifactId>jersey-cdi1x-servlet</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<version>${weld.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+
+		<!-- <dependency> <groupId>org.glassfish.jersey.test-framework.providers</groupId> 
+			<artifactId>jersey-test-framework-provider-jetty</artifactId> <version>${jersey.version}</version> 
+			<scope>test</scope> </dependency> -->
+
+		<!-- CONFIGURATION -->
+		<!-- <dependency> <groupId>org.cfg4j</groupId> <artifactId>cfg4j-core</artifactId> 
+			<version>4.4.0</version> </dependency> -->
+
+		<!--HAZELCAST DEPENDENCY SECTION -->
+		<!-- <dependency> <groupId>com.hazelcast</groupId> <artifactId>hazelcast</artifactId> 
+			<version>${hazelcast.version}</version> </dependency> <dependency> <groupId>com.hazelcast</groupId> 
+			<artifactId>hazelcast-client</artifactId> <version>${hazelcast.version}</version> 
+			</dependency> -->
+
+		<!-- UTILITIES -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.8.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-jersey2-jaxrs</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+		
+
+		<!-- TEST DEPENDENCY SECTION -->
+		<dependency>
+			<groupId>org.glassfish.jersey.test-framework.providers</groupId>
+			<artifactId>jersey-test-framework-provider-grizzly2</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.weld</groupId>
+			<artifactId>weld-junit4</artifactId>
+			<version>${weld-junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- <dependency> <groupId>org.jboss.weld</groupId> <artifactId>weld-junit-common</artifactId> 
+			<version>${version.weld-junit}</version> <scope>test</scope> </dependency> -->
+		<!-- <dependency> <groupId>org.glassfish.jersey.ext.cdi</groupId> <artifactId>jersey-weld2-se</artifactId> 
+			<scope>test</scope> </dependency> -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+		<!-- <dependency> <groupId>org.mockito</groupId> <artifactId>mockito-core</artifactId> 
+			<version>2.23.0</version> <scope>test</scope> </dependency> -->
+
+	</dependencies>
+	<properties>
+		<jersey.version>2.27</jersey.version>
+		<junit.version>4.12</junit.version>
+		<weld.version>2.4.8.Final</weld.version>
+		<cxf.version>3.1.5</cxf.version>
+		<weld-junit.version>1.3.1.Final</weld-junit.version>
+		<eudata-fastweb-ws.version>0.0.1-SNAPSHOT</eudata-fastweb-ws.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<parent>
+		<groupId>fastweb</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+		<artifactId>fastweb_2019_ws</artifactId>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+</project>

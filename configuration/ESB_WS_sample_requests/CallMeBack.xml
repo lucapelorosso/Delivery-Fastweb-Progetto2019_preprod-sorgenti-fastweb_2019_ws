@@ -1,0 +1,43 @@
+<env:Header xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"/>
+<SOAP-ENV:Body xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<ns2:CallMeBackRequest xmlns:ns2="http://it.fastweb.esb.org/CallMeBack">
+		<ns2:TransactionData>
+			<ns1:SenderName xmlns:ns1="http://it.fastweb.esb.org/TransactionDataTypes">MYFP</ns1:SenderName>
+			<ns1:TransactionId xmlns:ns1="http://it.fastweb.esb.org/TransactionDataTypes">ws035_d7cc84677dcf78d550fb500b764ac334</ns1:TransactionId>
+			<ns1:TransactionTime xmlns:ns1="http://it.fastweb.esb.org/TransactionDataTypes">2019-03-25 10:30:13</ns1:TransactionTime>
+		</ns2:TransactionData>
+		<ns2:InputData>
+			<ns2:requestId>a64656a9-1181-4ac2-8fc4-75fbaa9506d9</ns2:requestId>
+			<ns2:account>7631565</ns2:account>
+			<ns2:RocName>ROC_INFO_MY_SUBSCRIPTION</ns2:RocName>
+			<ns2:CreateRoc>N</ns2:CreateRoc>
+			<ns2:MotivoDiContatto>
+				<ns2:motivo>Informazioni</ns2:motivo>
+				<ns2:dettaglio>Il mio abbonamento</ns2:dettaglio>
+			</ns2:MotivoDiContatto>
+			<ns2:owner>frconforti@fastweb.it</ns2:owner>
+			<ns2:area>Standard</ns2:area>
+			<ns2:tipologia>Fisso</ns2:tipologia>
+			<ns2:uscitaCallMeBack>34</ns2:uscitaCallMeBack>
+			<ns2:caseId>45162733</ns2:caseId>
+			<ns2:contactInfo>3476243281</ns2:contactInfo>
+		</ns2:InputData>
+	</ns2:CallMeBackRequest>
+</SOAP-ENV:Body>
+<env:Header xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+<env:Body xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<tns:CallMeBackResponse xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:td="http://it.fastweb.esb.org/TransactionDataTypes" xmlns:rd="http://it.fastweb.esb.org/ResultDataType" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:types="http://hp.com/fastweb/cti/commontypes/" xmlns:tns="http://it.fastweb.esb.org/CallMeBack">
+		<tns:ResultData>
+			<rd:ResultCode>OK</rd:ResultCode>
+		</tns:ResultData>
+		<tns:OutputData>
+			<tns:ROCNumber/>
+			<tns:ResultInfo>
+				<tns:ResultCode>0</tns:ResultCode>
+				<tns:ResultMessage>SUCCESS</tns:ResultMessage>
+			</tns:ResultInfo>
+			<tns:requestId>a64656a9-1181-4ac2-8fc4-75fbaa9506d9</tns:requestId>
+			<tns:status>0</tns:status>
+		</tns:OutputData>
+	</tns:CallMeBackResponse>
+</env:Body>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions
+
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:n="http://www.fastweb.it/EDH/RetrieveInfoNexxt/"
+  xmlns:infa="http://www.informatica.com/"
+  targetNamespace="http://www.informatica.com/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+  <wsdl:types>
+  <xsd:schema targetNamespace="http://www.fastweb.it/EDH/RetrieveInfoNexxt/" xmlns="http://www.fastweb.it/EDH/RetrieveInfoNexxt/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:infatype="http://www.informatica.com/types/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/http/"/>
+	
+    <xsd:element name="InputRequest">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="BillingAccount">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="60"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="OutputResponse">
+      <xsd:complexType>
+        <xsd:sequence>
+		
+          <xsd:element name="ErrorCode" minOccurs="1" maxOccurs="1">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="10"/>
+                <xsd:minLength value="0"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+		  
+          <xsd:element name="ErrorDescription" minOccurs="1" maxOccurs="1">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="255"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:element>
+		  
+          <xsd:element name="BillingAccount" minOccurs="1" maxOccurs="1">
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:maxLength value="60"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+		</xsd:element>
+		
+		<xsd:element name="Technology" minOccurs="1" maxOccurs="1" nillable="true">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="255"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+        </xsd:element>
+		
+		<xsd:element name="CustomerPlayer" minOccurs="1" maxOccurs="1" nillable="true">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="255"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+        </xsd:element>
+		
+		<xsd:element name="RgType" minOccurs="1" maxOccurs="1" nillable="true">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="20"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+        </xsd:element>
+		
+		<xsd:element name="CpeModel" minOccurs="1" maxOccurs="1" nillable="true">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="20"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+        </xsd:element>
+		
+		<xsd:element name="CpeDesc" minOccurs="1" maxOccurs="1" nillable="true">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="255"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+        </xsd:element>
+		
+		<xsd:element name="InstallSystem" minOccurs="1" maxOccurs="1" nillable="true">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="2"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+        </xsd:element>
+		
+		<xsd:element name="ExistExtender" minOccurs="1" maxOccurs="1" nillable="true">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="2"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+        </xsd:element>
+		
+		<xsd:element name="NumExtender" minOccurs="1" maxOccurs="1" nillable="true" type="xsd:int">
+        </xsd:element>
+		
+		<xsd:element name="ExistDigitalServ" minOccurs="1" maxOccurs="1" nillable="true">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="2"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+        </xsd:element>
+		
+		<xsd:element name="ActivationDigitalServ" minOccurs="1" maxOccurs="1" nillable="true">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="2"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+        </xsd:element>
+		
+      </xsd:sequence>
+    </xsd:complexType>
+	</xsd:element>
+	
+  </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="inMessage">
+    <wsdl:part name="inParm" element="n:InputRequest" />
+  </wsdl:message>
+  <wsdl:message name="outMessage">
+    <wsdl:part name="outParm" element="n:OutputResponse" />
+  </wsdl:message>
+
+  <wsdl:portType name="RetrieveInfoNexxtPort">
+    <wsdl:operation name="RetrieveInfoNexxtOperation">
+      <wsdl:input message="infa:inMessage"/>
+      <wsdl:output message="infa:outMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="RetrieveInfoNexxtBinding" type="infa:RetrieveInfoNexxtPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="RetrieveInfoNexxtOperation">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input>
+        <soap:body  use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body  use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="RetrieveInfoNexxt">
+    <wsdl:port name="RetrieveInfoNexxtPort" binding="infa:RetrieveInfoNexxtBinding">
+      <soap:address location="http://pwc-cl3.svi.intranet.fw:7335/wsh/services/RealTime/RetrieveInfoNexxt" />
+    </wsdl:port>
+  </wsdl:service>
+  
+</wsdl:definitions>
+

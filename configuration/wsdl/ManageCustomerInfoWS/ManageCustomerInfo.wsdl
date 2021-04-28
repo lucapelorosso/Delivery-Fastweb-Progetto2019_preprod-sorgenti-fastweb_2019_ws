@@ -1,0 +1,966 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WL5G3N0:definitions
+	xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:WL5G3N1="http://it.fastweb.esb.org/ManageCustomerInfo"
+	xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/soap/"
+	targetNamespace="http://it.fastweb.esb.org/ManageCustomerInfo">
+	<WL5G3N0:types>
+		<xsd:schema
+			xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/"
+			xmlns:rd="http://it.fastweb.esb.org/ResultDataType"
+			xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+			xmlns:td="http://it.fastweb.esb.org/TransactionDataTypes"
+			xmlns:tns="http://it.fastweb.esb.org/ManageCustomerInfo"
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			attributeFormDefault="unqualified" elementFormDefault="qualified"
+			targetNamespace="http://it.fastweb.esb.org/ManageCustomerInfo">
+			<xsd:import schemaLocation="XSD_ESB_ResultData.xsd"
+				namespace="http://it.fastweb.esb.org/ResultDataType">
+			</xsd:import>
+			<xsd:import schemaLocation="XSD_ESB_TransactionData.xsd"
+				namespace="http://it.fastweb.esb.org/TransactionDataTypes"></xsd:import>
+			<xsd:element name="RetrieveCustomerRequest"
+				type="tns:RetrieveCustomerRequestType" />
+			<xsd:element name="RetrieveCustomerResponse"
+				type="tns:RetrieveCustomerResponseType" />
+			<xsd:element name="RetrieveAccountRequest"
+				type="tns:RetrieveAccountRequestType" />
+			<xsd:element name="RetrieveAccountResponse"
+				type="tns:RetrieveAccountResponseType" />
+			<xsd:element name="RetrieveAddressRequest"
+				type="tns:RetrieveAddressRequestType" />
+			<xsd:element name="RetrieveAddressResponse"
+				type="tns:RetrieveAddressResponseType" />
+			<xsd:element name="RetrieveContactRequest"
+				type="tns:RetrieveContactRequestType" />
+			<xsd:element name="RetrieveContactResponse"
+				type="tns:RetrieveContactResponseType" />
+			<xsd:complexType name="RetrieveCustomerRequestType">
+				<xsd:sequence>
+					<xsd:element name="TransactionData"
+						type="td:TransactionDataType" />
+					<xsd:element name="InputData"
+						type="tns:InputDataRetrieveCustomerType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="InputDataRetrieveCustomerType">
+				<xsd:sequence>
+					<xsd:element name="TipoInterrogazione">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+								<xsd:enumeration value="CF" />
+								<xsd:enumeration value="IV" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ParameterValue">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RetrieveAccountRequestType">
+				<xsd:sequence>
+					<xsd:element name="TransactionData"
+						type="td:TransactionDataType" />
+					<xsd:element name="InputData"
+						type="tns:InputDataRetrieveAccountType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="InputDataRetrieveAccountType">
+				<xsd:sequence>
+					<xsd:element name="TipoInterrogazione">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+								<xsd:enumeration value="AC" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ParameterValue">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RetrieveAddressRequestType">
+				<xsd:sequence>
+					<xsd:element name="TransactionData"
+						type="td:TransactionDataType" />
+					<xsd:element name="InputData"
+						type="tns:InputDataRetrieveAddressType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="InputDataRetrieveAddressType">
+				<xsd:sequence>
+					<xsd:element name="BillingAccount">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="AddressTypeCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:pattern value="BILLING|SEDE" />
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RetrieveContactRequestType">
+				<xsd:sequence>
+					<xsd:element name="TransactionData"
+						type="td:TransactionDataType" />
+					<xsd:element name="InputData"
+						type="tns:InputDataRetrieveContactType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="InputDataRetrieveContactType">
+				<xsd:sequence>
+					<xsd:element name="BillingAccount">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PreferredFlag" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+								<xsd:enumeration value="Y" />
+								<xsd:enumeration value="N" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ContactTypeCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+								<xsd:enumeration value="Cellulare" />
+								<xsd:enumeration value="Non Presente" />
+								<xsd:enumeration value="Cellularo" />
+								<xsd:enumeration value="eMail" />
+								<xsd:enumeration value="Telefono Fisso" />
+								<xsd:enumeration value="Telefono FW" />
+								<xsd:enumeration value="Fax" />
+								<xsd:enumeration value="Telefono SHA" />
+								<xsd:enumeration value="Cellulare FW" />
+								<xsd:enumeration value="Facebook" />
+								<xsd:enumeration value="Twitter" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RetrieveCustomerResponseType">
+				<xsd:sequence>
+					<xsd:element name="ResultData" type="rd:ResultDataType" />
+					<xsd:element minOccurs="0" name="OutputData"
+						type="tns:OutputDataRetrieveCustomerType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType
+				name="OutputDataRetrieveCustomerType">
+				<xsd:sequence>
+					<xsd:element name="ErrorCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="ErrorMessage"
+						nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="DataDetailsList"
+						nillable="true" type="tns:DataDetailsListRetrieveCustomerType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType
+				name="DataDetailsListRetrieveCustomerType">
+				<xsd:sequence>
+					<xsd:element name="TipoInterrogazione">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ParameterValue">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PartyID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="14" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="CreationDate" nillable="true"
+						type="xsd:dateTime" />
+					<xsd:element name="LastUpdateDate" nillable="true"
+						type="xsd:dateTime" />
+					<xsd:element name="DeleteDate" nillable="true"
+						type="xsd:dateTime" />
+					<xsd:element name="CustomerID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="DisplayName">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="800" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="FirstName" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="200" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="MiddleName" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="200" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LastName" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="400" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="OrganizationName" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="400" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="FiscalCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="IvaCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BirthDate" nillable="true"
+						type="xsd:date" />
+					<xsd:element name="BirthCity" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="180" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BirthCountry" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="180" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BirthCityZipCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="StatusCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="GenderCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PartyTypeCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="OwnerShip">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BirthState" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="IdentityCard" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="CCRegNum" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="BrandCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ParentCustomerID" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="MasterCustomerID" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="VATTypeCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="GUID" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Education" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="400" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Job" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="400" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RetrieveAccountResponseType">
+				<xsd:sequence>
+					<xsd:element name="ResultData" type="rd:ResultDataType" />
+					<xsd:element minOccurs="0" name="OutputData"
+						type="tns:OutputDataRetrieveAccountType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="OutputDataRetrieveAccountType">
+				<xsd:sequence>
+					<xsd:element name="ErrorCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="ErrorMessage"
+						nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="DataDetailsList"
+						nillable="true" type="tns:DataDetailsListRetrieveAccountType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType
+				name="DataDetailsListRetrieveAccountType">
+				<xsd:sequence>
+					<xsd:element name="TipoInterrogazione">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ParameterValue">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="unbounded" minOccurs="0"
+						name="ListOfAccounts" type="tns:ListOfAccountsType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ListOfAccountsType">
+				<xsd:sequence>
+					<xsd:element name="BillingAccount">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PartyID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="14" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="FiscalCode"
+						nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="IvaCode"
+						nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0"
+						name="CombinazioneServiziCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0"
+						name="CombinazioneServiziDisp" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="SegmentoCode"
+						nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="250" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="SegmentoDisp"
+						nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="250" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="Partnership"
+						nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="3" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="Ownership"
+						nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0"
+						name="ActualPaymentMethodCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="5" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0"
+						name="ActualPaymentMethodDisp" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0"
+						name="ActualPaymentMethodState" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="NextBillDate"
+						nillable="true" type="xsd:date" />
+					<xsd:element minOccurs="0" name="LastBillDate"
+						nillable="true" type="xsd:date" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RetrieveAddressResponseType">
+				<xsd:sequence>
+					<xsd:element name="ResultData" type="rd:ResultDataType" />
+					<xsd:element minOccurs="0" name="OutputData"
+						type="tns:OutputDataRetrieveAddressType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="OutputDataRetrieveAddressType">
+				<xsd:sequence>
+					<xsd:element name="ErrorCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="ErrorMessage"
+						nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="DataDetailsList"
+						nillable="true" type="tns:DataDetailsListRetrieveAddressType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType
+				name="DataDetailsListRetrieveAddressType">
+				<xsd:sequence>
+					<xsd:element name="BillingAccount">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="AddressTypeCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="unbounded" minOccurs="0"
+						name="ListOfAddress" type="tns:ListOfAddressType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ListOfAddressType">
+				<xsd:sequence>
+					<xsd:element name="CreationDate" nillable="true"
+						type="xsd:dateTime" />
+					<xsd:element name="LastUpdateDate" nillable="true"
+						type="xsd:dateTime" />
+					<xsd:element name="DeleteDate" nillable="true"
+						type="xsd:dateTime" />
+					<xsd:element name="AddressTypeCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="AddressStatusCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="10" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="AddressLine" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ZipCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="8" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="CityName" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="90" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Province" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="2" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="CountryCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="FirstName" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="90" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="MiddleName" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="90" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LastName" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="90" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="UAI" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="90" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RetrieveContactResponseType">
+				<xsd:sequence>
+					<xsd:element name="ResultData" type="rd:ResultDataType" />
+					<xsd:element minOccurs="0" name="OutputData"
+						type="tns:OutputDataRetrieveContactType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="OutputDataRetrieveContactType">
+				<xsd:sequence>
+					<xsd:element name="ErrorCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="ErrorMessage"
+						nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element minOccurs="0" name="DataDetailsList"
+						nillable="true" type="tns:DataDetailsListRetrieveContactType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType
+				name="DataDetailsListRetrieveContactType">
+				<xsd:sequence>
+					<xsd:element name="BillingAccount">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PreferredFlag" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ContactTypeCode" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="unbounded" minOccurs="0"
+						name="ListOfContacts" type="tns:ListOfContactsType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ListOfContactsType">
+				<xsd:sequence>
+					<xsd:element name="CreationDate" nillable="true"
+						type="xsd:dateTime" />
+					<xsd:element name="LastUpdateDate" nillable="true"
+						type="xsd:dateTime" />
+					<xsd:element name="DeleteDate" nillable="true"
+						type="xsd:dateTime" />
+					<xsd:element name="ContactID">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="15" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ContactValue">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="100" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ContactCreationDate" type="xsd:date" />
+					<xsd:element name="ContactTypeCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PreferredFlag">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LoyaltyFlag">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="InvoiceMailFlag">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="CompanyOfficierFlag">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ChannelCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="20" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="PreferredFlagStatusLastUpdateDate"
+						nillable="true" type="xsd:date" />
+					<xsd:element name="OperatorLogin" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="50" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="InsertModeCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ContactStatusCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="1" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</WL5G3N0:types>
+	<WL5G3N0:message name="RetrieveCustomerRequest">
+		<WL5G3N0:part name="RetrieveCustomerRequest"
+			element="WL5G3N1:RetrieveCustomerRequest" />
+	</WL5G3N0:message>
+	<WL5G3N0:message name="RetrieveCustomerResponse">
+		<WL5G3N0:part name="RetrieveCustomerResponse"
+			element="WL5G3N1:RetrieveCustomerResponse" />
+	</WL5G3N0:message>
+	<WL5G3N0:message name="RetrieveAccountRequest">
+		<WL5G3N0:part name="RetrieveAccountRequest"
+			element="WL5G3N1:RetrieveAccountRequest" />
+	</WL5G3N0:message>
+	<WL5G3N0:message name="RetrieveAccountResponse">
+		<WL5G3N0:part name="RetrieveAccountResponse"
+			element="WL5G3N1:RetrieveAccountResponse" />
+	</WL5G3N0:message>
+	<WL5G3N0:message name="RetrieveAddressRequest">
+		<WL5G3N0:part name="RetrieveAddressRequest"
+			element="WL5G3N1:RetrieveAddressRequest" />
+	</WL5G3N0:message>
+	<WL5G3N0:message name="RetrieveAddressResponse">
+		<WL5G3N0:part name="RetrieveAddressResponse"
+			element="WL5G3N1:RetrieveAddressResponse" />
+	</WL5G3N0:message>
+	<WL5G3N0:message name="RetrieveContactRequest">
+		<WL5G3N0:part name="RetrieveContactRequest"
+			element="WL5G3N1:RetrieveContactRequest" />
+	</WL5G3N0:message>
+	<WL5G3N0:message name="RetrieveContactResponse">
+		<WL5G3N0:part name="RetrieveContactResponse"
+			element="WL5G3N1:RetrieveContactResponse" />
+	</WL5G3N0:message>
+	<WL5G3N0:portType name="ManageCustomerInfoPortType">
+		<WL5G3N0:operation name="RetrieveCustomer">
+			<WL5G3N0:input
+				message="WL5G3N1:RetrieveCustomerRequest" />
+			<WL5G3N0:output
+				message="WL5G3N1:RetrieveCustomerResponse" />
+		</WL5G3N0:operation>
+		<WL5G3N0:operation name="RetrieveAccount">
+			<WL5G3N0:input message="WL5G3N1:RetrieveAccountRequest" />
+			<WL5G3N0:output
+				message="WL5G3N1:RetrieveAccountResponse" />
+		</WL5G3N0:operation>
+		<WL5G3N0:operation name="RetrieveAddress">
+			<WL5G3N0:input message="WL5G3N1:RetrieveAddressRequest" />
+			<WL5G3N0:output
+				message="WL5G3N1:RetrieveAddressResponse" />
+		</WL5G3N0:operation>
+		<WL5G3N0:operation name="RetrieveContact">
+			<WL5G3N0:input message="WL5G3N1:RetrieveContactRequest" />
+			<WL5G3N0:output
+				message="WL5G3N1:RetrieveContactResponse" />
+		</WL5G3N0:operation>
+	</WL5G3N0:portType>
+	<WL5G3N0:binding name="ManageCustomerInfoBinding"
+		type="WL5G3N1:ManageCustomerInfoPortType">
+		<WL5G3N2:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<WL5G3N0:operation name="RetrieveCustomer">
+			<WL5G3N2:operation style="document"
+				soapAction="RetrieveCustomer" />
+			<WL5G3N0:input>
+				<WL5G3N2:body use="literal" />
+			</WL5G3N0:input>
+			<WL5G3N0:output>
+				<WL5G3N2:body use="literal" />
+			</WL5G3N0:output>
+		</WL5G3N0:operation>
+		<WL5G3N0:operation name="RetrieveAccount">
+			<WL5G3N2:operation style="document"
+				soapAction="RetrieveAccount" />
+			<WL5G3N0:input>
+				<WL5G3N2:body use="literal" />
+			</WL5G3N0:input>
+			<WL5G3N0:output>
+				<WL5G3N2:body use="literal" />
+			</WL5G3N0:output>
+		</WL5G3N0:operation>
+		<WL5G3N0:operation name="RetrieveAddress">
+			<WL5G3N2:operation style="document"
+				soapAction="RetrieveAddress" />
+			<WL5G3N0:input>
+				<WL5G3N2:body use="literal" />
+			</WL5G3N0:input>
+			<WL5G3N0:output>
+				<WL5G3N2:body use="literal" />
+			</WL5G3N0:output>
+		</WL5G3N0:operation>
+		<WL5G3N0:operation name="RetrieveContact">
+			<WL5G3N2:operation style="document"
+				soapAction="RetrieveContact" />
+			<WL5G3N0:input>
+				<WL5G3N2:body use="literal" />
+			</WL5G3N0:input>
+			<WL5G3N0:output>
+				<WL5G3N2:body use="literal" />
+			</WL5G3N0:output>
+		</WL5G3N0:operation>
+	</WL5G3N0:binding>
+	<WL5G3N0:service name="ManageCustomerInfoService">
+		<WL5G3N0:documentation>OSB Service</WL5G3N0:documentation>
+		<WL5G3N0:port name="ManageCustomerInfoPort"
+			binding="WL5G3N1:ManageCustomerInfoBinding">
+			<WL5G3N2:address
+				location="http://ws302oag.se.intranet.fw:8080/Eudata/CustomerManagement/ManageCustomerInfo" />
+		</WL5G3N0:port>
+	</WL5G3N0:service>
+</WL5G3N0:definitions>

@@ -1,0 +1,198 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:td="http://it.fastweb.esb.org/TransactionDataTypes" xmlns:rd="http://it.fastweb.esb.org/ResultDataType" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://it.fastweb.esb.org/CallMeBack" targetNamespace="http://it.fastweb.esb.org/CallMeBack">
+	<types>
+		<xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="http://it.fastweb.esb.org/CallMeBack">
+			<xsd:import schemaLocation="XSD_ESB_TransactionData.xsd" namespace="http://it.fastweb.esb.org/TransactionDataTypes"/>
+			<xsd:import schemaLocation="XSD_ESB_ResultData.xsd" namespace="http://it.fastweb.esb.org/ResultDataType"/>
+			<xsd:element name="CallMeBackRequest" type="tns:CallMeBackRequestType"/>
+			<xsd:element name="CallMeBackResponse" type="tns:CallMeBackResponseType"/>
+			<xsd:complexType name="CallMeBackRequestType">
+				<xsd:sequence>
+					<xsd:element name="TransactionData" type="td:TransactionDataType"/>
+					<xsd:element name="InputData" type="tns:InputDataType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="InputDataType">
+				<xsd:sequence>
+					<xsd:element name="requestId">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="36"/>
+								<xsd:maxLength value="36"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="account" type="xsd:string"/>
+					<xsd:element name="RocName" minOccurs="0" type="xsd:string"/>
+					<xsd:element name="CreateRoc" minOccurs="0" type="xsd:string"/>
+					<xsd:element name="ContactRequest" minOccurs="0" type="tns:ContactRequestType"/>
+					<xsd:element name="MotivoDiContatto" minOccurs="0" type="tns:MotivoDiContattoType"/>
+					<xsd:element name="servizio">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="3"/>
+								<xsd:maxLength value="3"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="issue" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="owner" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="area" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="tipologia" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="msisdn" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="uscitaCallMeBack" type="xsd:string"/>
+					<xsd:element name="caseId" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="genericId" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="contactInfo" type="xsd:string"/>
+					<xsd:element name="contactInfoType" type="xsd:short" minOccurs="0"/>
+					<xsd:element name="dailyFrom" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="dailyTo" type="xsd:integer" minOccurs="0"/>
+					<xsd:element name="dialSchedTime" type="xsd:dateTime" minOccurs="0"/>
+					<xsd:element name="fineFascia" type="xsd:dateTime" minOccurs="0"/>
+					<xsd:element name="nomeFascia" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="kvList" type="tns:kvListType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="kvListType">
+				<xsd:sequence>
+					<xsd:element name="KeyValue" type="tns:KeyValueType" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="KeyValueType">
+				<xsd:sequence>
+					<xsd:element name="key" type="xsd:string"/>
+					<xsd:element name="value" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ContactRequestType">
+				<xsd:sequence>
+					<xsd:element name="DialogID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="TrackID" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="SottodettaglioROC" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="DescrizioneROC" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="MotivoDiContattoType">
+				<xsd:sequence>
+					<xsd:element name="motivo" type="xsd:string"/>
+					<xsd:element name="dettaglio" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="CallMeBackResponseType">
+				<xsd:sequence>
+					<xsd:element name="ResultData" type="rd:ResultDataType"/>
+					<xsd:element name="OutputData" type="tns:OutputDataType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="OutputDataType">
+				<xsd:sequence>
+					<xsd:element name="ROCId" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="18"/>
+								<xsd:maxLength value="18"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ROCCode" type="xsd:string" minOccurs="0" nillable="true"/>
+					<xsd:element name="ROCNumber" type="xsd:string" minOccurs="0" nillable="true"/>
+					<xsd:element name="ResultInfo" type="tns:ResultInfoType"/>
+					<xsd:element name="requestId">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="36"/>
+								<xsd:maxLength value="36"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="status" type="xsd:short"/>
+					<xsd:element name="description" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="kvList" type="tns:kvListType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ResultInfoType">
+				<xsd:sequence>
+					<xsd:element name="ResultCode" type="xsd:int"/>
+					<xsd:element name="ResultMessage" minOccurs="0" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0"/>
+								<xsd:maxLength value="255"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="MessageList" type="tns:MessageListType" minOccurs="0" nillable="true"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="MessageListType">
+				<xsd:sequence>
+					<xsd:element name="Message" type="tns:MessageType" maxOccurs="unbounded" nillable="true"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="MessageType">
+				<xsd:sequence>
+					<xsd:element name="Type">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0"/>
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Code">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0"/>
+								<xsd:maxLength value="50"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Message">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0"/>
+								<xsd:maxLength value="255"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Detail" minOccurs="0" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0"/>
+								<xsd:maxLength value="1000"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</types>
+	<message name="CallMeBackRequest">
+		<part name="CallMeBackRequest" element="tns:CallMeBackRequest"/>
+	</message>
+	<message name="CallMeBackResponse">
+		<part name="CallMeBackResponse" element="tns:CallMeBackResponse"/>
+	</message>
+	<portType name="CallMeBackPortType">
+		<operation name="CallMeBack">
+			<input message="tns:CallMeBackRequest"/>
+			<output message="tns:CallMeBackResponse"/>
+		</operation>
+	</portType>
+	<binding name="CallMeBackBinding" type="tns:CallMeBackPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="CallMeBack">
+			<soap:operation soapAction="CallMeBack" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="CallMeBackService">
+		<port name="CallMeBackPort" binding="tns:CallMeBackBinding">
+			<soap:address location="http://localhost:8011/AGW/CallMeBack"/>
+		</port>
+	</service>
+</definitions>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WL5G3N0:definitions
+	xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:WL5G3N1="http://it.fastweb.esb.org/RetrieveIVROpenCase"
+	xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/soap/"
+	targetNamespace="http://it.fastweb.esb.org/RetrieveIVROpenCase">
+	<WL5G3N0:types>
+		<xsd:schema
+			xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/"
+			xmlns:rd="http://it.fastweb.esb.org/ResultDataType"
+			xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+			xmlns:td="http://it.fastweb.esb.org/TransactionDataTypes"
+			xmlns:tns="http://it.fastweb.esb.org/RetrieveIVROpenCase"
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+			xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified"
+			targetNamespace="http://it.fastweb.esb.org/RetrieveIVROpenCase">
+			<xsd:import schemaLocation="XSD_ESB_ResultData.xsd"
+				namespace="http://it.fastweb.esb.org/ResultDataType">
+			</xsd:import>
+			<xsd:import schemaLocation="XSD_ESB_TransactionData.xsd"
+				namespace="http://it.fastweb.esb.org/TransactionDataTypes"></xsd:import>
+			<xsd:element name="RetrieveIVROpenCaseRequest"
+				type="tns:RetrieveIVROpenCaseRequest" />
+			<xsd:element name="RetrieveIVROpenCaseResponse"
+				type="tns:RetrieveIVROpenCaseResponse" />
+			<xsd:complexType name="RetrieveIVROpenCaseRequest">
+				<xsd:sequence>
+					<xsd:element name="TransactionData"
+						type="td:TransactionDataType" />
+					<xsd:element name="InputData" type="tns:InputDataType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="InputDataType">
+				<xsd:sequence>
+					<xsd:element name="AccountNumber">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RetrieveIVROpenCaseResponse">
+				<xsd:sequence>
+					<xsd:element name="ResultData" type="rd:ResultDataType" />
+					<xsd:element minOccurs="0" name="OutputData"
+						type="tns:OutputDataType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="OutputDataType">
+				<xsd:sequence>
+					<xsd:element name="ErrorCode">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0" />
+								<xsd:maxLength value="10" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ErrorDescription">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="AccountNumber">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="60" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element maxOccurs="unbounded" minOccurs="0"
+						name="CaseData" type="tns:CaseDataType" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="CaseDataType">
+				<xsd:sequence>
+					<xsd:element name="CaseId" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="30" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="LastModifiedDate" nillable="true"
+						type="xsd:date" />
+					<xsd:element name="CreatedDate" nillable="true"
+						type="xsd:date" />
+					<xsd:element name="Issue" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Origin" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="MotivoContatto" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="DettaglioMotivoContatto"
+						nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Status" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="40" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Ownerid" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="80" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="DispatchGroup" nillable="true">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="255" />
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</WL5G3N0:types>
+	<WL5G3N0:message name="RetrieveIVROpenCaseRequest">
+		<WL5G3N0:part name="parameters"
+			element="WL5G3N1:RetrieveIVROpenCaseRequest" />
+	</WL5G3N0:message>
+	<WL5G3N0:message name="RetrieveIVROpenCaseResponse">
+		<WL5G3N0:part name="parameters"
+			element="WL5G3N1:RetrieveIVROpenCaseResponse" />
+	</WL5G3N0:message>
+	<WL5G3N0:portType name="RetrieveIVROpenCasePortType">
+		<WL5G3N0:operation name="RetrieveIVROpenCaseRequest">
+			<WL5G3N0:input
+				message="WL5G3N1:RetrieveIVROpenCaseRequest" />
+			<WL5G3N0:output
+				message="WL5G3N1:RetrieveIVROpenCaseResponse" />
+		</WL5G3N0:operation>
+	</WL5G3N0:portType>
+	<WL5G3N0:binding name="RetrieveIVROpenCaseBinding"
+		type="WL5G3N1:RetrieveIVROpenCasePortType">
+		<WL5G3N2:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<WL5G3N0:operation name="RetrieveIVROpenCaseRequest">
+			<WL5G3N2:operation style="document"
+				soapAction="RetrieveIVROpenCaseRequest" />
+			<WL5G3N0:input>
+				<WL5G3N2:body use="literal" />
+			</WL5G3N0:input>
+			<WL5G3N0:output>
+				<WL5G3N2:body use="literal" />
+			</WL5G3N0:output>
+		</WL5G3N0:operation>
+	</WL5G3N0:binding>
+	<WL5G3N0:service name="RetrieveIVROpenCaseService">
+		<WL5G3N0:documentation>OSB Service</WL5G3N0:documentation>
+		<WL5G3N0:port name="RetrieveIVROpenCase"
+			binding="WL5G3N1:RetrieveIVROpenCaseBinding">
+			<WL5G3N2:address
+				location="http://ws302oag.se.intranet.fw:8080/Eudata/CustomerProblemManagement/RetrieveIVROpenCase" />
+		</WL5G3N0:port>
+	</WL5G3N0:service>
+</WL5G3N0:definitions>

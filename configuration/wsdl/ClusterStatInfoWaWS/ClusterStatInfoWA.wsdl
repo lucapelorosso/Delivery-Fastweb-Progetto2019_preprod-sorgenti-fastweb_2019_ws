@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://hp.com/fastweb/cti/clusterstatinfowa/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AccountInfo"
+	targetNamespace="http://hp.com/fastweb/cti/clusterstatinfowa/" xmlns:types="http://hp.com/fastweb/cti/commontypes/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://hp.com/fastweb/cti/clusterstatinfowa/">
+			<xsd:import namespace="http://hp.com/fastweb/cti/commontypes/"
+				schemaLocation="XSD_CTI_CommonTypes.xsd" />
+				
+			<xsd:complexType name="DayInfo">
+				<xsd:attribute name="name" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="it">
+							Nome dell giorno
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="label" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="it">
+							attributo con l'identificativo di chiusura.
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="flagStatus" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="it">
+							idientificativo stato di chiusura
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="inizio" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="it">
+							Indica l'orario di inizio
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+				<xsd:attribute name="fine" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation xml:lang="it">
+							Indica l'orario di fine
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:complexType>
+			<xsd:complexType name="AperturaInfoList">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" name="dayInfo"
+						type="tns:DayInfo" />
+				</xsd:sequence>				
+				<xsd:attribute name="noteDesc" type="xsd:string" use="optional" />
+			</xsd:complexType>
+
+			<xsd:complexType name="ClusterInfo">
+				<xsd:attribute name="name" type="xsd:string" use="required" />
+				<xsd:attribute name="uscita" type="xsd:string" use="optional" />
+				<xsd:attribute name="priorita" type="xsd:int" use="optional" />
+			</xsd:complexType>
+
+			<xsd:complexType name="ClusterInfoList">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" name="clusterInfo"
+						type="tns:ClusterInfo" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ClusterStatInfoWA">
+				<xsd:sequence>
+					<xsd:element name="cluster" type="tns:ClusterInfo"
+						minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="it">
+								Cluster e uscita
+								IVR. Presente solo se è il cluster è calcolato. Si
+								restituisce il
+								cluster e l'uscita a priorità più alta.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="AperturaInfo" type="tns:AperturaInfoList" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation xml:lang="it">
+								Lista delle
+								statistiche associate.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<!-- GetClusterStatInfo -->
+			<xsd:element name="GetClusterStatInfoRequestWA">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="requestId" type="types:UUID">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									Identificativo
+									della richiesta.
+									Viene ricopiato nella risposta.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="sender" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									Identificativo del
+									sender.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="account" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									Identificativo del
+									cliente.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="motivoDiContatto" type="types:MotivoDiContatto"
+							minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									Coppia con il
+									motivo di contatto del cliente.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="issue" type="xsd:string"
+							minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									Issue (esempio: HT_Degrado)
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="owner" type="xsd:string"
+							minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									Owner del case come sfdc-federation-id(esempio: nbenvenuti@fastweb.it)
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="area" type="xsd:string"
+							minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									Indica l'area. Può valere "Standard","Mobile" oppure non essere valorizzato.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="tipologia" type="xsd:string"
+							minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									Indica la combinazione di servizi del cliente. Può valere "Fisso","Mobile","Fisso+Mobile".
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<!--PRJ0003759-->
+						<xsd:element name="servizio" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									Indica il servizio
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="kvList" type="types:KeyValueList"
+							minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									Lista di coppie
+									chiave-valore opzionali utili al fine della profilazione del
+									cliente.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="GetClusterStatInfoResponseWA">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="requestId" type="types:UUID">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									Ricopiato dalla
+									richiesta.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="status" type="xsd:short" />
+						<xsd:element name="description" type="xsd:string"
+							minOccurs="0" />
+						<xsd:element name="clusterStatInfoWA" type="tns:ClusterStatInfoWA"
+							minOccurs="0" maxOccurs="1">
+							<xsd:annotation>
+								<xsd:documentation xml:lang="it">
+									L'elemento è
+									presente solamente se status=0, ossia se ci non sono stati
+									errori.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="GetClusterStatInfoRequestWA">
+		<wsdl:part element="tns:GetClusterStatInfoRequestWA"
+    	name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetClusterStatInfoResponseWA">
+		<wsdl:part element="tns:GetClusterStatInfoResponseWA" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="ClusterStatInfoWA">
+		<wsdl:operation name="GetClusterStatInfoWA">
+			<wsdl:input message="tns:GetClusterStatInfoRequestWA"/>
+			<wsdl:output message="tns:GetClusterStatInfoResponseWA"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ClusterStatInfoWASOAP" type="tns:ClusterStatInfoWA">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetClusterStatInfoWA">
+			<soap:operation soapAction="http://hp.com/fastweb/cti/clusterstatinfowa/GetClusterStatInfoWA"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ClusterStatInfoWA">
+		<wsdl:port binding="tns:ClusterStatInfoWASOAP" name="ClusterStatInfoWASOAP">
+			<soap:address location="http://localhost:8080/ClusterStatInfoWA/services/ClusterStatInfoWA"/>
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

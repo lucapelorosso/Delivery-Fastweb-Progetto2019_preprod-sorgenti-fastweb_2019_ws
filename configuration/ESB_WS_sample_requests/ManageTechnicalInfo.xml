@@ -1,0 +1,102 @@
+<env:Header xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"/>
+<SOAP-ENV:Body xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<ns2:RetrieveCTPOrderRequest xmlns:ns2="http://it.fastweb.esb.org/ManageTechnicalInfo">
+		<ns2:TransactionData>
+			<ns1:SenderName xmlns:ns1="http://it.fastweb.esb.org/TransactionDataTypes">MYFP</ns1:SenderName>
+			<ns1:TransactionId xmlns:ns1="http://it.fastweb.esb.org/TransactionDataTypes">ws031_f7098a9414ae29a0a77f30874bb7d83e</ns1:TransactionId>
+			<ns1:TransactionTime xmlns:ns1="http://it.fastweb.esb.org/TransactionDataTypes">2019-03-25 11:12:10</ns1:TransactionTime>
+		</ns2:TransactionData>
+		<ns2:InputData>
+			<ns2:BillingAccount>8890973</ns2:BillingAccount>
+		</ns2:InputData>
+	</ns2:RetrieveCTPOrderRequest>
+</SOAP-ENV:Body>
+<env:Header xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"/>
+<n4:Body xmlns:n4="http://schemas.xmlsoap.org/soap/envelope/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:n3="http://www.w3.org/2003/05/soap-envelope" xmlns:n="http://www.fastweb.it/EDH/RetrieveCTPOrder/" xmlns:n7="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<tns:RetrieveCTPOrderResponse xmlns:infa="http://www.informatica.com/" xmlns:infatype="http://www.informatica.com/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:td="http://it.fastweb.esb.org/TransactionDataTypes" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://it.fastweb.esb.org/ResultDataType" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://it.fastweb.esb.org/ManageTechnicalInfo">
+		<tns:ResultData>
+			<ns1:ResultCode>OK</ns1:ResultCode>
+		</tns:ResultData>
+		<tns:OutputData>
+			<tns:ErrorCode>OK</tns:ErrorCode>
+			<tns:ErrorMessage>SUCCESSO</tns:ErrorMessage>
+			<tns:DataDetailsList>
+				<tns:BillingAccount>8890973</tns:BillingAccount>
+				<tns:ListOfOrder>
+					<tns:OrderID>14445133</tns:OrderID>
+					<tns:AuthenticationFlag>1</tns:AuthenticationFlag>
+					<tns:CustomerClass>4</tns:CustomerClass>
+					<tns:DeactivationDate xmlns:ns261792="http://www.w3.org/2001/XMLSchema-instance" ns261792:nil="true"/>
+					<tns:IsCpeFw>1</tns:IsCpeFw>
+					<tns:NumUsers>122</tns:NumUsers>
+					<tns:OmSiteId>9418525</tns:OmSiteId>
+					<tns:PostPrePayFlag>0</tns:PostPrePayFlag>
+					<tns:ReleaseSw>17.2.0412_FW_248_DGA4131</tns:ReleaseSw>
+					<tns:RgType>5</tns:RgType>
+					<tns:Status>1</tns:Status>
+					<tns:Technology>20</tns:Technology>
+					<tns:CityName>PALERMO</tns:CityName>
+					<tns:StreetType>VIA</tns:StreetType>
+					<tns:StreetName>MESSINA MARINE</tns:StreetName>
+					<tns:StreetCivicNumber>105/A</tns:StreetCivicNumber>
+					<tns:IsAcsCfg>1</tns:IsAcsCfg>
+					<tns:IsDHCPCfg>1</tns:IsDHCPCfg>
+					<tns:CpeIPAddress>10.22.27.154</tns:CpeIPAddress>
+					<tns:MacAddress>101331F2B21C</tns:MacAddress>
+					<tns:SwitchIPAddress xmlns:ns261793="http://www.w3.org/2001/XMLSchema-instance" ns261793:nil="true"/>
+					<tns:SwitchPort xmlns:ns261794="http://www.w3.org/2001/XMLSchema-instance" ns261794:nil="true"/>
+					<tns:ProfileType>VDSL</tns:ProfileType>
+					<tns:ProfileTypeNetwork>VDSL</tns:ProfileTypeNetwork>
+					<tns:CustomerProfilePerfRete>1</tns:CustomerProfilePerfRete>
+					<tns:ServiceClass>1000</tns:ServiceClass>
+					<tns:ServiceClassUp>300</tns:ServiceClassUp>
+					<tns:TbrDown>100000</tns:TbrDown>
+					<tns:DslamIPAddress>10.7.21.146</tns:DslamIPAddress>
+					<tns:DslamPort>1/0/4/17</tns:DslamPort>
+					<tns:DslamName>s1-palermo-an-024e2-1</tns:DslamName>
+					<tns:BrasIPAddress>10.22.24.1</tns:BrasIPAddress>
+					<tns:PvcDati>0/27510417</tns:PvcDati>
+					<tns:PvcSpeed>100000</tns:PvcSpeed>
+					<tns:IfAtmDati>327510417</tns:IfAtmDati>
+					<tns:ChannelProgress>3</tns:ChannelProgress>
+					<tns:PermOlo>000018</tns:PermOlo>
+					<tns:CpeType>23</tns:CpeType>
+					<tns:DHCPRegisteredDate>2017-12-15</tns:DHCPRegisteredDate>
+					<tns:InnerVlan>417</tns:InnerVlan>
+					<tns:OuterVlan>2751</tns:OuterVlan>
+					<tns:BrasAtmSlotPort>32751</tns:BrasAtmSlotPort>
+					<tns:PvcCustVoice xmlns:ns261795="http://www.w3.org/2001/XMLSchema-instance" ns261795:nil="true"/>
+					<tns:PvcFWData>0/27510417</tns:PvcFWData>
+					<tns:PvcFWVoice>5/27510417</tns:PvcFWVoice>
+					<tns:SubinterfaceVoice>327510417</tns:SubinterfaceVoice>
+					<tns:TiLineID xmlns:ns261796="http://www.w3.org/2001/XMLSchema-instance" ns261796:nil="true"/>
+					<tns:IPV6Compatibility>1</tns:IPV6Compatibility>
+					<tns:AddressNat444>1</tns:AddressNat444>
+					<tns:IPPubblicoRouted>10.22.27.154</tns:IPPubblicoRouted>
+					<tns:BrasName>s1-palermo-bg101</tns:BrasName>
+					<tns:BrasType>8</tns:BrasType>
+					<tns:ManCode>s1</tns:ManCode>
+					<tns:FwMacAddress>B0EABCDEE7E0</tns:FwMacAddress>
+					<tns:MosFwSerialNumber>F1741F0H29338</tns:MosFwSerialNumber>
+					<tns:MosFwModelDescr>MOS FASTGate - RTV1907VW</tns:MosFwModelDescr>
+					<tns:MosFwDeliveryDate>2017-12-16</tns:MosFwDeliveryDate>
+					<tns:MosFw>0</tns:MosFw>
+					<tns:ServiceKeyFTTH100 xmlns:ns261797="http://www.w3.org/2001/XMLSchema-instance" ns261797:nil="true"/>
+					<tns:SlotPots>3</tns:SlotPots>
+					<tns:CanalePots>17</tns:CanalePots>
+					<tns:ManName>Sicilia</tns:ManName>
+					<tns:CpeHostname xmlns:ns261798="http://www.w3.org/2001/XMLSchema-instance" ns261798:nil="true"/>
+					<tns:TdTransp xmlns:ns261799="http://www.w3.org/2001/XMLSchema-instance" ns261799:nil="true"/>
+					<tns:TechProfileTi xmlns:ns261800="http://www.w3.org/2001/XMLSchema-instance" ns261800:nil="true"/>
+					<tns:BitRateUp>30</tns:BitRateUp>
+					<tns:BitRateDown>70</tns:BitRateDown>
+					<tns:IsUcpe>1</tns:IsUcpe>
+					<tns:CpeCommercialDesc>CPE_UNICA</tns:CpeCommercialDesc>
+					<tns:EdhLastUpdateDate>2019-03-24</tns:EdhLastUpdateDate>
+					<tns:ActivationDate>2017-12-07</tns:ActivationDate>
+					<tns:ActivationFirstDate>2017-12-07</tns:ActivationFirstDate>
+				</tns:ListOfOrder>
+			</tns:DataDetailsList>
+		</tns:OutputData>
+	</tns:RetrieveCTPOrderResponse>
+</n4:Body>

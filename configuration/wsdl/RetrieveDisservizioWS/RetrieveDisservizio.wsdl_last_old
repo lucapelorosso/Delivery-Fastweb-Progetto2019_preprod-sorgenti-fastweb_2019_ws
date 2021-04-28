@@ -1,0 +1,124 @@
+<definitions targetNamespace="http://it.fastweb.esb.org/RetrieveDisservizio" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:td="http://it.fastweb.esb.org/TransactionDataTypes" xmlns:rd="http://it.fastweb.esb.org/ResultDataType" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://it.fastweb.esb.org/RetrieveDisservizio">
+	<types>
+		<xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="http://it.fastweb.esb.org/RetrieveDisservizio">
+			<xsd:import schemaLocation="XSD_ESB_TransactionData.xsd" namespace="http://it.fastweb.esb.org/TransactionDataTypes"/>
+			<xsd:import schemaLocation="XSD_ESB_ResultData.xsd" namespace="http://it.fastweb.esb.org/ResultDataType"/>
+			<xsd:element name="RetrieveDisservizioRequest" type="tns:RetrieveDisservizioRequestType"/>
+			<xsd:element name="RetrieveDisservizioResponse" type="tns:RetrieveDisservizioResponseType"/>
+			<xsd:complexType name="RetrieveDisservizioRequestType">
+				<xsd:sequence>
+					<xsd:element name="TransactionData" type="td:TransactionDataType"/>
+					<xsd:element name="InputData" type="tns:InputDataType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="InputDataType">
+				<xsd:sequence>
+					<xsd:element name="AccountNumber">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1"/>
+								<xsd:maxLength value="60"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Task" type="tns:TaskType"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="TaskType">
+				<xsd:sequence>
+					<xsd:element name="Type" type="xsd:string"/>
+					<xsd:element name="ObjectNameRelatedTo" type="xsd:string"/>
+					<xsd:element name="ObjectIdRelatedTo" type="xsd:string"/>
+					<xsd:element name="Status" type="xsd:string"/>
+					<xsd:element name="Priority" type="xsd:string"/>
+					<xsd:element name="Subject" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="RetrieveDisservizioResponseType">
+				<xsd:sequence>
+					<xsd:element name="ResultData" type="rd:ResultDataType"/>
+					<xsd:element name="OutputData" type="tns:OutputDataType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="OutputDataType">
+				<xsd:sequence>
+					<xsd:element name="ErrorCode" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1"/>
+								<xsd:maxLength value="30"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="ErrorDescription" minOccurs="0">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="1"/>
+								<xsd:maxLength value="255"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="AccountNumber" type="xsd:string"/>
+					<xsd:element name="DisservizioData" type="tns:DisservizioDataType" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="DisservizioDataType">
+				<xsd:sequence>
+					<xsd:element name="Flag_disservizio_in_corso" type="xsd:int" nillable="true"/>
+					<xsd:element name="Flag_contatto_avvenuto" type="xsd:string" nillable="true"/>
+					<xsd:element name="Data_cambio_Stato" minOccurs="1" maxOccurs="1">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0"/>
+								<xsd:maxLength value="255"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="Data_sistema" minOccurs="1" maxOccurs="1">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:minLength value="0"/>
+								<xsd:maxLength value="255"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+		</xsd:schema>
+	</types>
+	<message name="RetrieveDisservizioRequest">
+		<part name="RetrieveDisservizioRequest" element="tns:RetrieveDisservizioRequest"/>
+	</message>
+	<message name="RetrieveDisservizioResponse">
+		<part name="RetrieveDisservizioResponse" element="tns:RetrieveDisservizioResponse"/>
+	</message>
+	<portType name="RetrieveDisservizioPortType">
+		<operation name="RetrieveDisservizio">
+			<input message="tns:RetrieveDisservizioRequest"/>
+			<output message="tns:RetrieveDisservizioResponse"/>
+		</operation>
+	</portType>
+	<binding name="RetrieveDisservizioBinding" type="tns:RetrieveDisservizioPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="RetrieveDisservizio">
+			<soap:operation soapAction="RetrieveDisservizio" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="RetrieveDisservizioService">
+		<port name="RetrieveDisservizioPort" binding="tns:RetrieveDisservizioBinding">
+			<soap:address location="http://localhost:7011/ESB/RetrieveDisservizio"/>
+		</port>
+	</service>
+</definitions>
