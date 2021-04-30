@@ -1,0 +1,28 @@
+version: 0.0
+os: linux
+files:
+#   - source: /configuration
+#     destination: /opt/tomcat/webapps/configuration
+# - source: /FW19WhiteList.war
+#   destination: /opt/tomcat/webapps
+#  - source: /setenv.sh
+#    destination: /opt/tomcat/bin
+#  - source: /context.xml
+#    destination: /opt/tomcat/conf
+  #CONF CloudWatch logs
+  - source: /servizi_logs.conf
+    destination: /etc/awslogs/config 
+#file_exists_behavior: OVERWRITE
+hooks:
+  BeforeInstall:
+    - location: scripts/create_backup.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_tomcat.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_tomcat.sh
+      timeout: 300
+      runas: root
