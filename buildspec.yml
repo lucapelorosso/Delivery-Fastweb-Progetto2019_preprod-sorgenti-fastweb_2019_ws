@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+  build:
+    commands:
+      - java -version
+artifacts:
+  files:
+    - servizi_logs.CONF
+    - appspec.yml
+    - scripts/create_backup.sh
+    - scripts/start_tomcat.sh
+    - scripts/stop_tomcat.sh

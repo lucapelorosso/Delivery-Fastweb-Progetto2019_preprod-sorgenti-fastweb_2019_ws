@@ -15,14 +15,14 @@ files:
 #file_exists_behavior: OVERWRITE
 hooks:
   BeforeInstall:
-    - location: scripts/create_backup.sh
+    - location: FW_Services/scripts/create_backup.sh
       timeout: 300
       runas: root
   ApplicationStart:
-    - location: scripts/start_tomcat.sh
+    - location: FW_Services/scripts/start_tomcat.sh
       timeout: 300
       runas: root
   ApplicationStop:
-    - location: scripts/stop_tomcat.sh
+    - location: FW_Services/scripts/stop_tomcat.sh
       timeout: 300
       runas: root
