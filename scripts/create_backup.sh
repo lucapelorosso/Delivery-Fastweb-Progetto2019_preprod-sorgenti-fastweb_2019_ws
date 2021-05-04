@@ -5,7 +5,7 @@ now=$(date +"%Y%m%d-%H%M")
 alias cp="cp"
 unalias cp
 
-sudo mkdir $path_base/webapps/configuration/wsdl_$now
+sudo mkdir /opt/tomcat
 #sudo cp -R $path_base/webapps/configuration/wsdl/ $path_base/webapps/configuration/wsdl_$now
 #sudo rm -R $path_base/webapps/configuration/wsdl/
 #sudo mkdir $path_base/webapps/configuration/wsdl
